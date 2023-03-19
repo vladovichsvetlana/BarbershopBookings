@@ -1,0 +1,93 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>Welcome to backoffice as {{ user.get_username }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'post-bron' %}" method="post">
+                {% csrf_token %}
+            <h2>please, select the date and time for booking</h2>
+            
+            <div class="bron-blocks">
+                <span class="bron-day" data="{{today}}">{{today}} Today</span>
+                <div class="bron-tab" data="for-{{today}}">
+                    {% if timesToday.count == 0  %}
+                        <div>The reservation is closed for today</div>
+                    {% endif %}
+                    {% for item in timesToday %}
+                        <div class="bron-block" data="{{todayBaseFormat}}">
+                            <input type="radio" id="{{ item.id }}"
+                                name="daytime" value="{{ item.id }}" required>
+                            <label for="{{ item.id }}">{{ item.dtime}}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            
+                {% for it in timesTomorrow %}
+                <span class="bron-day" data="{{it.dayForPost}}">{{it.day}}</span> 
+                <div class="bron-tab" data="for-{{it.dayForPost}}">
+                    {% for item in it.query %}
+                        <div class="bron-block" data="{{it.dayForPost}}">
+                            <input type="radio" id="{{ item.id }}" required
+                                name="daytime" value="{{ item.id }}">
+                            <label for="{{ item.id }}">{{ item.dtime}}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="bron-control">
+                <div class="bron-info" id="bron-info">
+                    Select date and time.. 
+                </div>
+                <select name="service" class="bron-service" required>
+                    {% for item in services %}
+                        <option value="{{ item.id }}">{{ item.service }} - {{item.price}} EUR</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            
+            <input type="hidden" name="day-date" id="day-date"  value ="{{todayBaseFormat}}">
+            
+            <button class="bron-button">save</button>
+            </form>
+        </div>
+    </div>
+</div> <!-- container-fluid -->
+
+
+
+<script>
+    let dayDate = document.querySelector('#day-date');
+    let dayTime = document.querySelectorAll('input[name="daytime"]');
+    let bronInfo = document.querySelector('#bron-info');
+
+    /* Подпись выбранной брони на дату и время внизу страницы index */
+    dayTime.forEach( (item,index) => {
+        item.addEventListener('change', (evt) => {
+            let m = evt.target.parentNode.getAttribute('data');
+            dayDate.value = m;
+            bronInfo.textContent = 'Selected date: ' + m + ' and time: ' + evt.target.parentNode.querySelector('label').textContent;
+        })
+    })
+    
+    /* --- rendering tabs ---*/
+    let bronDays = document.querySelectorAll('.bron-day');
+    bronDays.forEach( (item,index) => {
+        item.addEventListener('click', (evt) => {
+            let v = evt.target.getAttribute('data');
+            document.querySelector('div[data="for-'+ v +'"]').classList.toggle('active');
+        })
+    })
+
+</script>
+
+{% endblock %}

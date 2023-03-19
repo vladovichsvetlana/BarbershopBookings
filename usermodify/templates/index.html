@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Barber cuts</h1>
+
+
+<div class="container home-cards">
+  <div class="row">
+    {% for item in services %}
+      <div class="card col-sm-6" >
+        <div class="card-body">
+          <h5 class="card-title">{{ item.service }}</h5>
+          <p class="card-text">{{ item.about }}</p>
+          <p>{{ item.price }} euro</p>
+          <a href="/backoffice" class="btn btn-primary btn-go">go</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

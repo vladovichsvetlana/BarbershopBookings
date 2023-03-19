@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+    <div class="col">
+        <h1>All booking</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        {% for item in book %}
+        <div class="my-booking"> 
+            <span class="my-datetime">{{ item.datetime }} </span>
+            <span class="my-service">{{ item.service }} </span>
+            <span onclick="delurl(`{% url 'del-bron' item.id %}`)" class="my-delete" data="{{item.id}}"> del </span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+</div>
+<script>
+
+    function delurl(ur) {
+
+       if (confirm('delete a reservation?')){
+            return location.href = ur;
+       }
+
+    }
+
+</script>
+{% endblock %}
