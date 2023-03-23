@@ -1,0 +1,216 @@
+body {
+  background: #3a3b3e;
+}
+.signin {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.nav-header {
+  background: #644708;
+  color: #fff;
+}
+
+
+/* --------------------   home cards    --------------*/
+
+.home-cards {
+  padding: 20px 0;
+}
+.home-cards .card {
+  border: 1px solid #1d7802;
+  transition: all .2s;
+}
+.home-cards .card:hover {
+  transform: scale(1.01);
+  box-shadow: 1px 1px 5px #3be706;
+}
+.home-cards .card .btn-go{
+  background: #1B5E20;
+  color: #fff;
+  border: 1px solid #1B5E20;
+}
+.home-cards .card .btn-go:hover{
+  background:#1d7802;
+  color: #fff;
+  border: 1px solid #1d7802;
+  box-shadow: 1px 1px 5px #3be706;
+}
+
+/* ---------  styles for booking clients  -------------- */
+h1, h2 {
+  background:#644708;
+  margin: 0;
+  padding: 10px;
+  color: #fff;
+}
+.bron-blocks {
+  background: #644708;
+  color: #f5f5f5;
+  margin-top: 10px;
+}
+.bron-blocks .bron-tab{ 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  transition: all .5s;
+  align-items: center;
+  justify-items: center;
+  background:  rgb(123 96 52);
+}
+.bron-blocks .bron-day{
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 22px;
+  color: #fff;
+  border: 1px solid #f5f5f5;
+  box-sizing: border-box;
+  text-align: center;
+}
+.bron-blocks .bron-tab.active{
+  height: auto;
+  opacity: 1;
+}
+.bron-blocks .bron-block {
+  position: relative;
+}
+.bron-blocks .bron-block input {
+  position: absolute;
+  visibility: hidden;
+}
+.bron-blocks .bron-block label {
+  padding: 5px 20px;
+  cursor: pointer;
+  transition: all .3s;
+}
+.bron-blocks .bron-block label:hover{
+  background: #644708;
+}
+.bron-blocks .bron-block input:checked+label {
+  background: #3be706;
+  color:#644708;
+}
+.bron-control {
+  border: 1px solid #ccc;
+  background: #644708;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px;
+}
+.bron-button {
+  display: block;
+  width: 100%;
+  border: 1px solid #644708;
+  color: #fff;
+  font-weight: 600;
+  font-size: 22px;
+  padding: 20px 0 25px 0;
+  margin-top: 10px;
+  background: #644708;
+  transition: all .3s;
+}
+.bron-button:hover {
+  background: #644708;
+}
+.bron-service {
+  background: #644708;
+  color: #fff;
+  padding: 10px;
+  border: 2px solid #3a3b3e;
+} 
+
+/*------ my booking ------*/
+
+.my-booking{
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #644708;
+}
+.my-booking span{
+  display: inline-block;
+  margin-right: 10px;
+  padding: 0 10px;
+  background: #f5f5f5;
+}
+.my-booking .my-datetime {
+  border: 1px solid #644708;
+  color: #644708;
+}
+.my-booking .my-service {
+  border: 1px solid #805a2e;
+  color: #805a2e;
+}
+.my-booking .my-delete {
+  border: 1px solid #a30202;
+  color: #a30202;
+  cursor: pointer;
+  transition: all .2s;
+}
+.my-booking .my-delete:hover{
+  border: 1px solid #fff;
+  color: #fff;
+  background: #a30202;
+}
+
+
+/*------ media  ---------*/
+
+@media(max-width: 980px){
+  .bron-blocks .bron-tab{ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .bron-control {
+    grid-template-columns: 1fr;
+  }
+  .bron-service {
+    margin-top: 10px;
+  }
+}
+
+@media(max-width: 792px){
+  .bron-blocks .bron-tab{ 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 450px){
+  .bron-blocks .bron-tab{ 
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
