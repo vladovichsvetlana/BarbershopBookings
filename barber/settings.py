@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!09u#th&^490x77&x4miux0d@-3!=x(74xdjrmct!e)1pkd@_y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # array for linking the number and day of the week
@@ -142,10 +142,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 #connecting a static url
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, "static"),
-]
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
+# STATIC_URL = 'static/'
+# STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static"),
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -157,5 +166,5 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())
