@@ -159,7 +159,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 import django_on_heroku
 django_on_heroku.settings(locals(), staticfiles=False)
-del DATABASES['default']['OPTIONS']['sslmode']
+#del DATABASES['default']['OPTIONS']['sslmode']
 
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
